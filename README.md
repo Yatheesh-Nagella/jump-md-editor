@@ -1,12 +1,45 @@
-# React + Vite
+# 📝 Jump Markdown Editor
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **2-pane real-time Markdown editor** built as part of the screening challenge for the **Global Software Engineering Contractor** role at Jump.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[👉 Open the deployed app](https://jump-md-editor-one.vercel.app/)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+
+- 🖊️ **Markdown Input** on the left pane
+- 👀 **Real-time Preview** on the right pane
+- 📄 **Export to PDF** of the rendered Markdown
+- 📋 **Copy Rendered Output** to clipboard
+
+---
+
+## 🧱 Tech Stack
+
+- **Frontend Framework**: React (via Vite)
+- **Markdown Parser**: [marked](https://github.com/markedjs/marked)
+- **PDF Export**: [html2pdf.js](https://github.com/eKoopmans/html2pdf)
+- **Clipboard API**: `navigator.clipboard`
+
+---
+
+## 🛠️ Getting Started
+
+```bash
+# Clone the repo
+git clone https://github.com/YOUR_USERNAME/jump-md-editor.git
+cd jump-md-editor
+
+# Install dependencies
+npm install
+
+# Run locally
+npm run dev
+
+
+## 📦 Deployment
+This project is deployed via Vercel. Just push to GitHub and import the repo on Vercel – it auto-detects Vite and deploys instantly.
+
