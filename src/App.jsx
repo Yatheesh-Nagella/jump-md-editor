@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { marked } from 'marked';
+import html2pdf from 'html2pdf.js';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [markdown, setMarkdown] = useState('');
+
+  const handleExport = () => {
+    const element = document.getElementById('preview');
+    html2pdf().from(element).save('markdown.pdf');
+  };
+
+  const handleCopy = async () => {
+    const element = document.getElementById('preview');
+    await navigator.clipboard.writeText(element.innerHTML);
+    alert('Copied to clipboard!');
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div style={{ display: 'flex', height: '100vh', fontFamily: 'sans-serif' }}>
+      <textarea
+        value={markdown}
+        onChange={(e) => setMarkdown(e.target.value)}
+        style={{
+          flex: 1,
+          padding: '1rem',
+          fontSize: '16px',
+          border: 'none',
+          outline: 'none',
+          resize: 'none'
+        }}
+        placeholder="Write your markdown here..."
+      />
+      <div style={{ flex: 1, padding: '1rem', borderLeft: '1px solid #ccc' }}>
+        <div
+          id="preview"
+          dangerouslySetInnerHTML={{ __html: marked(markdown) }}
+          style={{ marginBottom: '1rem' }}
+        />
+        <button onClick={handleExport} style={{ marginRight: '1rem' }}>
+          Export PDF
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <button onClick={handleCopy}>Copy</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
