@@ -12,8 +12,17 @@ function App() {
 
   const handleCopy = async () => {
     const element = document.getElementById('preview');
-    await navigator.clipboard.writeText(element.innerHTML);
-    alert('Copied to clipboard!');
+    const html = element.innerHTML;
+    const blob = new Blob([html], { type: 'text/html' });
+    const clipboardItem = new ClipboardItem({ 'text/html': blob });
+
+    try {
+      await navigator.clipboard.write([clipboardItem]);
+      alert('Rich text copied to clipboard!');
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+      alert('Copy failed. Your browser may not support rich text clipboard.');
+    }
   };
 
   return (
